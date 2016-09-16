@@ -1,0 +1,57 @@
+header.main-header()
+	// Logo
+	a.logo
+		// mini logo for sidebar mini 50x50 pixels
+		span.logo-mini
+			b K
+		// logo for regular state and mobile devices
+		span.logo-lg
+			p Kucin
+	// Header Navbar: style can be found in header.less
+	nav.navbar.navbar-static-top(role='navigation')
+		// Sidebar toggle button
+		a.sidebar-toggle( data-toggle='offcanvas', role='button')
+			span.sr-only Toggle navigation
+		.navbar-custom-menu
+			ul.nav.navbar-nav
+				// Messages: style can be found in dropdown.less
+				li.dropdown.messages-menu
+					a.dropdown-toggle(href='#', data-toggle='dropdown')
+						i.fa.fa-envelope-o
+						span(ng-if="unreadMsgs.length" ng-bind="unreadMsgs.length").label.label-danger
+					ul.dropdown-menu
+						li.header You have {{unreadMsgs.length}} messages unread
+						li
+							// inner menu: contains the actual data
+							ul.menu
+								li(ng-repeat="msg in unreadMsgs")
+									// start message
+									a(href='/#/talk/{{msg.from}}')
+										.pull-left
+											img.img-circle(src='{{msg.avatar}}', alt='User Image')
+										h4
+											| {{msg.name}}
+											small
+												i.fa.fa-clock-o
+												|  {{msg.date | date:'HH:mm'}}
+										p {{msg.content}}
+								// end message
+						li.footer
+							a(href='#') See All Messages
+				li.dropdown.notifications-menu
+					a.dropdown-toggle(href='', data-toggle='dropdown')
+						i.fa.fa-bell-o
+						span(ng-if="unreadMsgs.length" ng-bind="unreadMsgs.length").label.label-warning
+					ul.dropdown-menu
+						li.header You have {{unreadMsgs.length}} new notifications
+						li
+							// inner menu: contains the actual data
+							ul.menu
+								li(ng-repeat="msg in unreadMsgs")
+									// start message
+									a(href='/#/talk/{{msg.from}}')
+										i.fa.fa-warning.text-yellow
+										{{msg.content}}
+								// end message
+						li.footer
+							a(href='#') View all

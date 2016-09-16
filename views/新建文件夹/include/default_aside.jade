@@ -1,0 +1,55 @@
+aside.main-sidebar(ng-if="user.account")
+  // sidebar: style can be found in sidebar.less
+  section.sidebar
+    // Sidebar user panel (optional)
+    .user-panel
+      .pull-left.image
+        img.img-circle(src='{{user.avatar}}', alt='User Image')
+      .pull-left.info
+        p {{user.username}}
+        // Status
+        a(href='#')
+          i.fa.fa-circle.text-success
+          |  Online
+    // search form (Optional)
+    form.sidebar-form(action='#', method='get')
+      .input-group
+        input.form-control(type='text', name='q', placeholder='Search...')
+        span.input-group-btn
+          button#search-btn.btn.btn-flat(type='submit', name='search')
+            i.fa.fa-search
+    // /.search form
+    // Sidebar Menu
+    ul.sidebar-menu
+      li.header HEADER
+      // Optionally, you can add icons to the links
+      li
+        a(href='/#/friendsManage')
+          i.fa.fa-users
+          span FriendsManage
+      li.treeview
+        a(href='')
+          i.fa.fa-comments-o
+          span Recent Talk
+          i.fa.fa-angle-left.pull-right
+        ul.treeview-menu
+          li(ng-repeat="friend in friends")
+            a(href='/#/talk/{{friend._id}}')
+              .user-panel
+                .pull-left.image
+                  img.img-circle(src='{{friend.avatar}}', alt='User Image')
+                span {{friend.username}}
+      li
+        a(href='#/register')
+          i.fa.fa-plus-circle
+          span register
+      li
+        a(href="#/login")
+          i.fa.fa-sign-in
+          span login
+      li
+        a(href='#/logout')
+          i.fa.fa-sign-out
+          span logout
+    // /.sidebar-menu
+  // /.sidebar

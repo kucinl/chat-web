@@ -1,0 +1,120 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="box box-solid box-default" >
+            <div class="box-header">
+                <h3 class="box-title">功能栏</h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" ng-click="fmv.func='addf'">
+                        <i class="fa fa-user-plus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" ng-click="fmv.func='addg'">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" ng-click="fmv.func='edit'">
+                        <i class="fa fa-edit"></i>
+                    </button>
+                    <button class="btn btn-box-tool" ng-click="fmv.func='show'">
+                        <i class="fa fa-list-alt"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body" style="display: block;"  ng-switch on="fmv.func">
+                <div ng-switch-default>
+                    <p>您可以通过上方工具栏的4个按钮分别进行添加好友、添加分组、进入编辑模式、返回普通模式等操作</p>
+                </div>
+                <div ng-switch-when="addf">
+                    <form >
+                        <div class="form-group" >
+                            <label for="cname1" >输入对方账号</label>
+                            <input id="" type="text" name="cname" ng-model="fmv.saccount" required />
+                            <button ng-click="searchFriend()">查询</button>
+                        </div>
+                        <div  ng-switch on="fmv.ssuccess">
+                            <div ng-switch-when="false">
+                                没有相关查询结果
+                            </div>
+                            <div ng-switch-when="true">
+                                <div class="user-panel">
+                                    <div class="pull-left image">
+                                        <img src="{{fmv.sresult.avatar}}" alt="User Image" class="img-circle">
+                                    </div>
+                                    <div class="pull-left info">
+                                        <p>{{fmv.sresult.username}}</p>
+                                        <!-- Status-->
+                                        <a href="#">
+                                            <i class="fa fa-circle text-success"></i>Online</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <select ng-model="group" ng-options="group.name for group in groups">
+                                            <option value="">请选择分组</option>
+                                        </select>
+                                        <button class="btn btn-primary btn-flat" ng-click="addFriend(group._id)">添加</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div ng-switch-when="addg">
+                    <form >
+                        <div class="form-group" >
+                            <label for="cname1" >小组名称</label>
+                            <input id="cname1" type="text" name="cname" ng-model="fmv.newGname" required />
+                        </div>
+                    </form>
+                    <button type="button" class="btn btn-default btn-flat pull-left" ng-click="fmv.func='show'">取消</button>
+                    <button type="button" class="btn btn-primary btn-flat pull-right" ng-click="addGroup()">确认</button>
+                </div>
+                <div ng-switch-when="edit">
+                    <p>您正处于编辑模式</p>
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+    </div>
+    <div class="col-md-4" ng-repeat="group in groups">
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">
+                    {{group.name}}
+                </h3>
+
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" ng-click="deleteGroup(group.name)" ng-show="fmv.func=='edit'">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </div>
+                <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body" style="display: block;" >
+                <!-- Angular在这里为ng-repeat的每个子项都创建了单独的作用域 -->
+                <div class="user-panel" ng-repeat="friend in group.friends">
+                    <a class="pull-left image" href="/#/talk/{{friend.friendId}}">
+                        <img src="{{friend.avatar}}" class="img-circle" alt="User Image">
+                    </a>
+                    <div class="pull-left info">
+                        <p>{{friend.username}}</p>
+                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    </div>
+                    <div class="pull-right" ng-show="fmv.func=='edit'">
+                            <select ng-model="g" ng-options="g.name for g in groups">
+                                <option value="">请选择分组</option>
+                            </select>
+                            <button class="btn btn-primary btn-flat" ng-click="changeFriendGroup(friend.friendId,friend._id,group._id,g._id)">移动</button>
+                       <button class="btn btn-danger" ng-click="deleteFriend(friend._id,group._id)">删除</button>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+</div>
+
+
+

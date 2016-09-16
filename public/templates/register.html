@@ -1,0 +1,81 @@
+<div class="section">
+  <div class="container">
+    <div></div>
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="text-center">
+                    <b>注册——kucin</b>
+                </h1>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <form class="form-horizontal" method="post" role="form" name="registerForm" novalidate>
+          <div class="form-group ">
+            <label class="col-sm-2 control-label" for="account">用户名</label>
+            <div class="col-sm-10">
+              <input class=" form-control" name="account" placeholder="您的账户名和登录名" type="text" ng-model="myForm.user.account" minlength="6" required>
+              <span style="color:red" ng-show="registerForm.account.$dirty && registerForm.account.$invalid">
+  <span class="error" ng-show="registerForm.account.$error.required">
+      用户名是必须的。
+  </span>
+                <span class="error" ng-show="registerForm.account.$error.minlength">
+      用户名的长度需要达到6位。
+  </span>
+              </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="pwd">密码</label>
+            <div class="col-sm-10">
+              <input class="form-control" name="pwd" value="" placeholder="密码" type="password" ng-model="myForm.user.pwd" minlength="6" required>
+                <span style="color:red" ng-show="registerForm.pwd.$dirty && registerForm.pwd.$invalid">
+  <span class="error" ng-show="registerForm.pwd.$error.required">
+      用户名是必须的。
+  </span>
+                <span class="error" ng-show="registerForm.pwd.$error.minlength">
+      用户名的长度需要达到6位。
+  </span>
+              </span>
+            </div>
+          </div>
+            <div class="form-group ">
+                <label class="col-sm-2 control-label" for="eamil">邮箱</label>
+                <div class="col-sm-10">
+                    <input class=" form-control" name="email" placeholder="建议使用常用邮箱" type="email" ng-model="myForm.user.eamil" required/>
+              <span style="color:red" ng-show="registerForm.email.$dirty && registerForm.email.$invalid">
+  <span class="error" ng-show="registerForm.email.$error.email">
+      请输入正确的邮箱格式
+  </span>
+              </span>
+                </div>
+            </div>
+          <div class="form-group">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-10">
+              <input id="submit" type="button" value="注册" class="btn btn-primary btn-block" ng-click="createUser()" ng-disabled="registerForm.$invalid ">
+            </div>
+          </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" ></label>
+                <div class="col-sm-10">
+                    <label class="checkbox" for="checkbox3">
+                        <a class="pull-right" href="#/login" >
+                            已有账号？
+                        </a>
+                    </label>
+                </div>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="cover">
+  <div class="cover-image"></div>
+</div>
