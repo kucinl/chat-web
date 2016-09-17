@@ -18,15 +18,15 @@ var chat = require('./routes/chat');
 
 var app = express();
 
-//设置跨域访问  
-app.all('*', function(req, res, next) {  
-    res.header("Access-Control-Allow-Origin", "*");  
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");  
-    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");  
-    res.header("X-Powered-By",' 3.2.1')  
-    res.header("Content-Type", "application/json;charset=utf-8");  
-    next();  
-});  
+//设置跨域访问
+/*app.all('*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    res.header("X-Powered-By",' 3.2.1')
+    res.header("Content-Type", "application/json;charset=utf-8");
+    next();
+});  */
 
 //创建服务器
 var server = require('http').createServer(app);
@@ -65,7 +65,6 @@ app.use(session({
 }));
 //定义静态文件路径
 app.use('/static', express.static(path.join(__dirname, 'public')));
-app.use('/static', express.static(path.join(__dirname, 'bower_components')));
 app.use('/static', express.static(path.join(__dirname, 'upload')));
 //We are going to protect app with JWT
 //app.use(expressJwt({secret: config.secret}));
