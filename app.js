@@ -65,6 +65,7 @@ app.use(session({
 }));
 //定义静态文件路径
 app.use('/static', express.static(path.join(__dirname, 'public')));
+app.use('/static', express.static(path.join(__dirname, 'bower_components')));
 app.use('/static', express.static(path.join(__dirname, 'upload')));
 //We are going to protect app with JWT
 //app.use(expressJwt({secret: config.secret}));
